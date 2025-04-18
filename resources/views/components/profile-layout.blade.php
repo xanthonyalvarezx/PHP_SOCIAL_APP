@@ -10,7 +10,7 @@
                 </div>
                 <div>
                     @auth
-                        @if (!$sharedData['following'] and auth()->user()->id != $sharedData['user']->id)
+                        @if (!$sharedData['currentlyFollowing'] and auth()->user()->id != $sharedData['user']->id)
                             <form class="ml-2 d-inline" action="/create/follow/{{ $sharedData['user']->username }}"
                                 method="POST">
                                 @csrf

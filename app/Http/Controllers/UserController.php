@@ -17,20 +17,14 @@ class UserController
 
     private function getProfileData($user_id)
     {
-        $curentlyFollowing = 0;
+        $currentlyFollowing = 0;
         if (auth()->check()) {
-            $curentlyFollowing = Follow::where([['user_id', '=', auth()->user()->id], ['followed_user', '=', $user_id->id]])->count();
+            $currentlyFollowing = Follow::where([['user_id', '=', auth()->user()->id], ['followed_user', '=', $user_id->id]])->count();
         }
-        View::share('sharedData', ['followers' => $user_id->followers()->count(), 'following' => $user_id->following()->count(), 'profilePhoto' => $user_id->photo, 'user' => $user_id, 'postCount' => $user_id->posts()->count()]);
+        View::share('sharedData', ['currentlyFollowing' => $currentlyFollowing, 'followers' => $user_id->followers()->count(), 'following' => $user_id->following()->count(), 'profilePhoto' => $user_id->photo, 'user' => $user_id, 'postCount' => $user_id->posts()->count()]);
     }
     public function profile(User $user_id)
     {
-
-        var_dump(
-            $curentlyFollowing = Follow::where([['user_id', '=', auth()->user()->id], ['followed_user', '=', $user_id->id]])->count(),
-            $followingCount = Follow::count('followed_user'),
-            $postCount = Post::count('id')
-        );
         $userPosts = $user_id->posts()->latest()->get();
         foreach ($userPosts as $post) {
             $post['body'] = strip_tags(Str::markdown($post->body), '<p><ul><ul><ol><li><strong><em><h3><br>');
@@ -68,7 +62,6 @@ class UserController
         $imageData = $image->cover(120, 120)->toJpeg();
         Storage::put('public/profilePhotos/' . $fileName, $imageData);
         $oldProfilePhoto = $user->photo;
-
         $user->photo = $fileName;
         $user->save();
 
