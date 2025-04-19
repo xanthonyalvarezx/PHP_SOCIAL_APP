@@ -18,7 +18,7 @@
         </div>
 
         <p class="text-muted small mb-4">
-            <a href="#"><img class="avatar-tiny" src="{{ $post->user->photo }}" /></a>
+            <a href="/profile/{{ $post->user->id }}"><img class="avatar-tiny" src="{{ $post->user->photo }}" /></a>
             Posted by <a href="/profile/{{ $post->user->id }}">{{ $post->user->username }}</a> on
             {{ $post->created_at->format('m/d/Y') }}
         </p>

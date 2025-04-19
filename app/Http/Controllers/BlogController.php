@@ -66,4 +66,10 @@ class BlogController extends Controller
         $post_id->delete();
         return redirect('/profile/' . auth()->user()->id)->with('Post successfully deleted');
     }
+    public function search($term)
+    {
+        $posts = Post::search($term)->get();
+        $posts->load('user:id,username,photo');
+        return $posts;
+    }
 }

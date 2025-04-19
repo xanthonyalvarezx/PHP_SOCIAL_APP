@@ -28,6 +28,8 @@ Route::get('/posts/{post_id}', [BlogController::class, "showPost"]);
 // Route::get('/edit-post/{id}', [BlogController::class, "editPostForm"]);
 Route::put('/update-post/{post_id}', [BlogController::class, "updatePost"])->middleware('can:update,post_id');
 Route::delete('/post/{post_id}', [BlogController::class, "deletePost"])->middleware('can:delete,post_id');
+Route::get('/search/{term}', [BlogController::class, "search"]);
+
 
 //PROFILE ROUTES
 Route::get('/profile/{user_id}', [UserController::class, 'profile'])->middleware('auth');

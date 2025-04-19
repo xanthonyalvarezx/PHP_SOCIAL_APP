@@ -13,7 +13,8 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"
             rel="stylesheet" />
-        <link rel="stylesheet" href="/main.css" />
+        @vite(['resources/css/app.css'])
+        @vite(['resources/js/app.js'])
     </head>
     <header class="header-bar mb-3">
         <div class="container d-flex flex-column flex-md-row align-items-center p-3">
