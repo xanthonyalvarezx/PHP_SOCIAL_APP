@@ -74,3 +74,8 @@
         <p class="m-0">Copyright &copy; {{ date('Y') }} <a href="/" class="text-muted">OurApp</a>. All
             rights reserved.</p>
     </footer>
+
+    @auth
+        <div id="chat-wrapper" data-username={{ auth()->user()->username }} data-avatar={{ auth()->user()->photo }}
+            class="chat-wrapper shadow border-top border-left border-right"></div>
+    @endauth

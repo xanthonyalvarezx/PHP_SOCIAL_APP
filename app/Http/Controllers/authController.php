@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Events\exampleEvent;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -30,6 +32,7 @@ class authController extends Controller
 
         if (auth()->attempt(['username' => $loginData['loginusername'], 'password' => $loginData['loginpassword']])) {
             $request->session()->regenerate();
+            event(new exampleEvent(['username' => auth()->user()->username, 'action' => 'login']));
             return redirect('/')->with('success', 'You\'ve successfully loggen in');
         } else {
             return redirect('/')->with('error', 'Invalid credentials');
@@ -70,6 +73,7 @@ class authController extends Controller
      */
     public function logout()
     {
+        event(new exampleEvent(['username' => auth()->user()->username, 'action' => 'logout']));
         auth()->logout();
         return redirect('/')->with('success', 'You are now logged out');
     }
