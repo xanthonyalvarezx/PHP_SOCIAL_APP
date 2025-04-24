@@ -19,18 +19,18 @@
     </head>
     <header class="header-bar mb-3">
         <div class="container d-flex flex-column flex-md-row align-items-center p-3">
-            <h4 class="my-0 mr-md-auto font-weight-normal"><a href="/" class="text-white">OurApp</a></h4>
+            <h4 class="my-0 mr-md-auto font-weight-normal"><a wire:navigate href="/" class="text-white">OurApp</a>
+            </h4>
             @auth
-
-                <div wire:ignore class="flex-row my-3 my-md-0 ">
-                    <div>
+                <div class="d-flex flex-row my-3 my-md-0">
+                    @persist('headerdynamic')
                         <livewire:search />
-                    </div>
-                    <livewire:chat />
-                    <a href="/profile/{{ auth()->user()->id }}" class="mr-2"><img title="My Profile" data-toggle="tooltip"
-                            data-placement="bottom" style="width: 32px; height: 32px; border-radius: 16px"
-                            src="{{ auth()->user()->photo }}" /></a>
-                    <a class="btn btn-sm btn-success mr-2" href="/create-post">Create Post</a>
+                        <livewire:chat />
+                    @endpersist
+                    <a wire:navigate href="/profile/{{ auth()->user()->id }}" class="mr-2"><img title="My Profile"
+                            data-toggle="tooltip" data-placement="bottom"
+                            style="width: 32px; height: 32px; border-radius: 16px" src="{{ auth()->user()->photo }}" /></a>
+                    <a wire:navigate class="btn btn-sm btn-success mr-2" href="/create-post">Create Post</a>
                     <form action="/logout" method="POST" class="d-inline">
                         @csrf
                         <button class="btn btn-sm btn-secondary">Sign Out</button>
@@ -73,6 +73,7 @@
     {{ $slot }}
     {{-- FOOTER START --}}
     <footer class="border-top text-center small text-muted py-3">
-        <p class="m-0">Copyright &copy; {{ date('Y') }} <a href="/" class="text-muted">OurApp</a>. All
+        <p class="m-0">Copyright &copy; {{ date('Y') }} <a wire:navigate href="/"
+                class="text-muted">OurApp</a>. All
             rights reserved.</p>
     </footer>

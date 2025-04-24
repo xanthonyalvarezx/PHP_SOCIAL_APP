@@ -2,7 +2,7 @@
     <div class="list-group">
         @foreach ($posts as $post)
             <div class="card shadow-lg mb-3">
-                <a href="/posts/{{ $post->id }}" class="list-group-item list-group-item-action">
+                <a a wire:navigate href="/posts/{{ $post->id }}" class="list-group-item list-group-item-action">
                     <div> <img class="avatar-tiny" src="{{ $post->user->photo }}" />
                         <strong> {{ $post->title }}</strong>
                     </div>

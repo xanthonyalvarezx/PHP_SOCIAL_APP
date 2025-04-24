@@ -40,7 +40,7 @@ export default class Chat {
             ${test.textContent}
           </div>
         </div>
-        <img class="chat-avatar avatar-tiny" src="${this.avatar}">
+        <img class="chat-avatar avatar-tiny" src="${this.photo}">
       </div>
     `)
         );

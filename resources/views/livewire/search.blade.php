@@ -33,7 +33,8 @@
                             </div>
                         @endif
                         @foreach ($results as $post)
-                            <a href="/posts/{{ $post->id }}" class="list-group-item list-group-item-action">
+                            <a x-on:click.prevent="isOpen=false; Livewire.navigate('/posts/{{ $post->id }}')"
+                                href="/posts/{{ $post->id }}" class="list-group-item list-group-item-action">
                                 <img class="avatar-tiny" src="{{ $post->user->photo }}">
                                 <strong>{{ $post->title }}</strong>
                                 <span class="text-muted small">by {{ $post->user->username }} on

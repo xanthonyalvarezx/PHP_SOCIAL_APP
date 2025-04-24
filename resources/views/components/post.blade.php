@@ -1,4 +1,4 @@
-    <a href="/posts/{{ $post->id }}" class="list-group-item list-group-item-action">
+    <a wire:navigate href="/posts/{{ $post->id }}" class="list-group-item list-group-item-action">
         <div>
             <img class="avatar-tiny" src="{{ $post->user->photo }}" />
             <strong>
